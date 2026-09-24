@@ -5,3 +5,6 @@ hugo-site/resources/
 .env
 *.env
 hugo-site/resources/
+
+# Paquete de entrega original: vive en el repositorio LaMusica_fm_WEB.
+hugo-site/LaMusica_fm_WEB-main/
