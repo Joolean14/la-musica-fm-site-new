@@ -1,0 +1,80 @@
+# Publica una vista previa del sitio en GitHub Pages.
+#
+# Esto NO es el despliegue de producción: Pages sirve solo archivos estáticos,
+# así que el formulario (/api/contacto, PHP) y las redirecciones 301 del servidor
+# no funcionan aquí. La producción se despliega con scripts/build.sh + rsync,
+# según el README.
+#
+# La vista previa se construye con HUGO_ENV=staging para que robots.txt bloquee
+# la indexación, porque una página de Pages es de acceso público.
+
+name: Vista previa en GitHub Pages
+
+on:
+  push:
+    branches: [implementacion/sitio-v02]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue a la vez; no se cancela el que esté en curso.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.166.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Hugo extended
+        run: |
+          curl -sSL -o hugo.deb \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i hugo.deb
+          hugo version
+
+      - uses: actions/configure-pages@v5
+        id: pages
+
+      - name: Generar las páginas desde el JSON
+        working-directory: hugo-site
+        run: |
+          python3 scripts/gen_pages.py
+          python3 scripts/gen_redirects.py
+
+      # hugo.check.toml omite el montaje de wordpress-export, que no está en el
+      # repositorio. Las imágenes de los artículos heredados no se ven aquí.
+      - name: Construir el sitio
+        working-directory: hugo-site
+        env:
+          HUGO_ENV: staging
+        run: |
+          hugo \
+            --config hugo.toml,hugo.check.toml \
+            --baseURL "${{ steps.pages.outputs.base_url }}/" \
+            --minify --gc
+
+      - name: Verificar rutas y redirecciones
+        working-directory: hugo-site
+        run: python3 scripts/check_rutas.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: hugo-site/public
+
+  desplegar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

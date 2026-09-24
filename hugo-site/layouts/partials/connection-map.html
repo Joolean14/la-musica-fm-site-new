@@ -51,7 +51,7 @@
   <dl>
     {{ range $node := $nodes }}
     <div data-map-item data-kind="{{ $node.kind }}">
-      <dt>{{ if $node.url }}<a href="{{ $node.url }}">{{ $node.label }}</a>{{ else }}{{ $node.label }}{{ end }}</dt>
+      <dt>{{ if $node.url }}<a href="{{ partial "url.html" $node.url }}">{{ $node.label }}</a>{{ else }}{{ $node.label }}{{ end }}</dt>
       <dd>{{ humanize $node.kind }} · conectado con LaMúsica.fm como articulador.</dd>
     </div>
     {{ end }}

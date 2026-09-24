@@ -9,7 +9,7 @@
 
 <div class="need-grid">
   {{ range $index, $need := $needs }}
-  <a class="need-card" href="{{ $need.url }}">
+  <a class="need-card" href="{{ partial "url.html" $need.url }}">
     <span class="need-number">{{ printf "%02d" (add $index 1) }}</span>
     <strong>{{ $need.label }}</strong>
     <span class="need-action">Explorar esta ruta <i aria-hidden="true">→</i></span>
@@ -18,6 +18,6 @@
 </div>
 
 <div class="section-close">
-  <a class="text-link" href="/servicios/">Ver todas las familias de servicios <span aria-hidden="true">↗</span></a>
-  <a class="quiet-link" href="/contacto/">Prefiero conversar primero</a>
+  <a class="text-link" href="{{ partial "url.html" "/servicios/" }}">Ver todas las familias de servicios <span aria-hidden="true">↗</span></a>
+  <a class="quiet-link" href="{{ partial "url.html" "/contacto/" }}">Prefiero conversar primero</a>
 </div>

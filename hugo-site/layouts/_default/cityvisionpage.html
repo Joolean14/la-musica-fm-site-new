@@ -7,7 +7,7 @@
   <div class="entity-logo" style="margin-bottom:24px">{{ partial "brand-logo.html" (dict "entity" $entity "surface" "light") }}</div>
   <h1>{{ $city.title }}</h1>
   <p class="lead">{{ $city.intro }}</p>
-  <div class="actions"><a class="button" href="{{ $city.primaryCta.url }}">{{ $city.primaryCta.label }}</a></div>
+  <div class="actions"><a class="button" href="{{ partial "url.html" $city.primaryCta.url }}">{{ $city.primaryCta.label }}</a></div>
 </div>
 
 <section class="section" aria-labelledby="proposito">

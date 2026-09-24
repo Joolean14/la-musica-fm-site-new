@@ -11,7 +11,7 @@
     <h2 id="rutas-ecosistema">Cómo recorrerlo</h2>
     <div class="card-grid card-grid-2" style="margin-top:28px">
       {{ range $ecosystem.routes }}
-      <a class="card" href="{{ .url }}"><h3>{{ .label }}</h3>
+      <a class="card" href="{{ partial "url.html" .url }}"><h3>{{ .label }}</h3>
         <span class="card-action">Entrar <span aria-hidden="true">→</span></span></a>
       {{ end }}
     </div>

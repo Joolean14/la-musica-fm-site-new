@@ -1,0 +1,15 @@
+{{- /* Resuelve una ruta del sitio respetando el baseURL, incluso cuando el sitio
+       se publica en un subdirectorio (por ejemplo, una vista previa en GitHub Pages).
+       relURL ignora el subdirectorio si la ruta empieza en "/", así que se quita. */ -}}
+{{- $path := . -}}
+{{- $query := "" -}}
+{{- if strings.Contains $path "?" -}}
+  {{- $parts := split $path "?" -}}
+  {{- $path = index $parts 0 -}}
+  {{- $query = printf "?%s" (index $parts 1) -}}
+{{- end -}}
+{{- if hasPrefix $path "http" -}}
+  {{- $path -}}
+{{- else -}}
+  {{- printf "%s%s" (relURL (strings.TrimPrefix "/" $path)) $query -}}
+{{- end -}}

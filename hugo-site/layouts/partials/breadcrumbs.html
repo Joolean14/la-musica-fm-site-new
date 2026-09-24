@@ -17,7 +17,7 @@
     {{ range $index, $crumb := $crumbs }}
     <li>
       {{ if eq (add $index 1) (len $crumbs) }}<span aria-current="page">{{ $crumb.label }}</span>
-      {{ else }}<a href="{{ $crumb.url }}">{{ $crumb.label }}</a>{{ end }}
+      {{ else }}<a href="{{ partial "url.html" $crumb.url }}">{{ $crumb.label }}</a>{{ end }}
     </li>
     {{ end }}
     {{ if and (eq (len $crumbs) 1) (ne .RelPermalink "/") }}<li><span aria-current="page">{{ .Title }}</span></li>{{ end }}

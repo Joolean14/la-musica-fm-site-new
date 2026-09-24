@@ -4,9 +4,9 @@
 <div class="document-viewer">
   <h3>{{ .label }}</h3>
   {{ if fileExists (printf "static/%s" (strings.TrimPrefix "assets/" .path)) }}
-  <iframe src="{{ $href }}" title="Vista previa de {{ .label }}" loading="lazy"></iframe>
+  <iframe src="{{ partial "url.html" $href }}" title="Vista previa de {{ .label }}" loading="lazy"></iframe>
   <div class="actions">
-    <a class="button" href="{{ $href }}" download>Descargar {{ .label }} (PDF)</a>
+    <a class="button" href="{{ partial "url.html" $href }}" download>Descargar {{ .label }} (PDF)</a>
   </div>
   {{ else }}
   <p class="lead">El archivo definitivo de {{ .label }} aún no está cargado en <code>{{ .path }}</code>.</p>

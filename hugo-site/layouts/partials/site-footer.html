@@ -5,22 +5,22 @@
       <div>
         <h2>{{ $site.name }}</h2>
         <p>Conectamos música, derechos, proyectos, empresas y ciudad.</p>
-        <p><a class="text-link" href="{{ $site.headerCta.url }}" style="color:inherit">{{ $site.headerCta.label }} ↗</a></p>
+        <p><a class="text-link" href="{{ partial "url.html" $site.headerCta.url }}" style="color:inherit">{{ $site.headerCta.label }} ↗</a></p>
       </div>
 
       <nav aria-label="Navegación del pie">
         <h3>Sitio</h3>
         <ul>
-          {{ range $site.navigation }}<li><a href="{{ .url }}">{{ .label }}</a></li>{{ end }}
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/contacto/">Contacto</a></li>
+          {{ range $site.navigation }}<li><a href="{{ partial "url.html" .url }}">{{ .label }}</a></li>{{ end }}
+          <li><a href="{{ partial "url.html" "/blog/" }}">Blog</a></li>
+          <li><a href="{{ partial "url.html" "/contacto/" }}">Contacto</a></li>
         </ul>
       </nav>
 
       <nav aria-label="Ecosistema">
         <h3>Ecosistema</h3>
         <ul>
-          {{ range hugo.Data.site.ecosystem.routes }}<li><a href="{{ .url }}">{{ .label }}</a></li>{{ end }}
+          {{ range hugo.Data.site.ecosystem.routes }}<li><a href="{{ partial "url.html" .url }}">{{ .label }}</a></li>{{ end }}
         </ul>
       </nav>
     </div>
@@ -28,7 +28,7 @@
     <div class="footer-legal">
       <p>{{ $site.legalName }} · NIT {{ $site.nit }}</p>
       <p>{{ $site.address }}</p>
-      <p><a href="{{ hugo.Data.site.privacy.url }}">Política de privacidad</a></p>
+      <p><a href="{{ partial "url.html" hugo.Data.site.privacy.url }}">Política de privacidad</a></p>
     </div>
   </div>
 </footer>

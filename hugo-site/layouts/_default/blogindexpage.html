@@ -17,7 +17,7 @@
 
     <nav class="post-filters" aria-label="Categorías del blog">
       {{ range $categories }}
-      <a class="map-filter" href="/categories/{{ . | urlize }}/">{{ . }}</a>
+      <a class="map-filter" href="{{ partial "url.html" (printf "/categories/%s/" (. | urlize)) }}">{{ . }}</a>
       {{ end }}
     </nav>
 
@@ -27,7 +27,7 @@
       <a class="post-card" href="{{ .RelPermalink }}" data-post-card
          data-search="{{ lower (printf "%s %s" .Title (delimit (.Params.categories | default slice) " ")) }}">
         {{ with .Params.featured_image }}
-        <img src="{{ . }}" alt="" loading="lazy" decoding="async" width="640" height="400">
+        <img src="{{ partial "url.html" . }}" alt="" loading="lazy" decoding="async" width="640" height="400">
         {{ end }}
         <p class="post-meta">{{ .Date.Format "2 Jan 2006" }}{{ with .Params.categories }} · {{ delimit . ", " }}{{ end }}</p>
         <h3>{{ .Title }}</h3>

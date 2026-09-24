@@ -9,5 +9,5 @@
   {{- $path = or (index $assets "primary") (index $assets "dark") (index $assets "light") -}}
 {{- end -}}
 {{- with $path -}}
-<img src="/{{ strings.TrimPrefix "assets/" . }}" alt="{{ $.entity.name }}" width="180" height="64" loading="lazy" decoding="async">
+<img src="{{ partial "url.html" (printf "/%s" (strings.TrimPrefix "assets/" .)) }}" alt="{{ $.entity.name }}" width="180" height="64" loading="lazy" decoding="async">
 {{- end -}}

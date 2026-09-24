@@ -4,12 +4,12 @@
   {{ range $familyIndex, $family := $families }}
   <section class="family" aria-labelledby="familia-{{ $familyIndex }}">
     <div class="family-head">
-      <h3 id="familia-{{ $familyIndex }}"><a href="{{ $family.slug }}">{{ $family.title }}</a></h3>
+      <h3 id="familia-{{ partial "url.html" $familyIndex }}"><a href="{{ $family.slug }}">{{ $family.title }}</a></h3>
       <p>{{ $family.intro }}</p>
     </div>
     <div class="card-grid">
       {{ range $family.services }}
-      <a class="card" href="{{ .slug }}">
+      <a class="card" href="{{ partial "url.html" .slug }}">
         <h4>{{ .name }}</h4>
         <p>{{ .question }}</p>
         <span class="card-action">Ver el servicio <span aria-hidden="true">→</span></span>

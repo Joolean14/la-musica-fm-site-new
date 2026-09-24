@@ -3,7 +3,7 @@
   <div class="shell">
     <div class="cta-banner">
       <h2>{{ .title }}</h2>
-      <a class="button" href="{{ .url }}">{{ .label }}</a>
+      <a class="button" href="{{ partial "url.html" .url }}">{{ .label }}</a>
     </div>
   </div>
 </section>

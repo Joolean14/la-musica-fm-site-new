@@ -5,7 +5,7 @@
   <p class="lead">Puede que el enlace haya cambiado. Estas rutas siguen disponibles:</p>
   <div class="card-grid" style="margin-top:32px">
     {{ range hugo.Data.site.site.navigation }}
-    <a class="card" href="{{ .url }}"><h2>{{ .label }}</h2>
+    <a class="card" href="{{ partial "url.html" .url }}"><h2>{{ .label }}</h2>
       <span class="card-action">Entrar <span aria-hidden="true">→</span></span></a>
     {{ end }}
   </div>

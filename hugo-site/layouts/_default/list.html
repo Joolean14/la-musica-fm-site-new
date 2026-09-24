@@ -11,7 +11,7 @@
     <div class="post-grid">
       {{ range $paginator.Pages }}
       <a class="post-card" href="{{ .RelPermalink }}">
-        {{ with .Params.featured_image }}<img src="{{ . }}" alt="" loading="lazy" width="640" height="400">{{ end }}
+        {{ with .Params.featured_image }}<img src="{{ partial "url.html" . }}" alt="" loading="lazy" width="640" height="400">{{ end }}
         <p class="post-meta">{{ .Date.Format "2 Jan 2006" }}</p>
         <h3>{{ .Title }}</h3>
       </a>
