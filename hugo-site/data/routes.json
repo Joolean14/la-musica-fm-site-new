@@ -1,0 +1,202 @@
+[
+  {
+    "page": "Inicio",
+    "url": "/",
+    "template": "HomePage"
+  },
+  {
+    "page": "Servicios",
+    "url": "/servicios/",
+    "template": "ServicesIndexPage"
+  },
+  {
+    "page": "Ecosistema",
+    "url": "/ecosistema/",
+    "template": "EcosystemPage"
+  },
+  {
+    "page": "Empresas y marcas",
+    "url": "/ecosistema/empresas-y-marcas/",
+    "template": "EntityIndexPage"
+  },
+  {
+    "page": "Proyectos propios",
+    "url": "/ecosistema/proyectos-propios/",
+    "template": "ProjectIndexPage"
+  },
+  {
+    "page": "Casos y experiencias",
+    "url": "/ecosistema/casos-y-experiencias/",
+    "template": "CaseIndexPage"
+  },
+  {
+    "page": "Mapa de conexiones",
+    "url": "/ecosistema/mapa-de-conexiones/",
+    "template": "ConnectionMapPage"
+  },
+  {
+    "page": "Medellín Ciudad de Música",
+    "url": "/medellin-ciudad-de-musica/",
+    "template": "CityVisionPage"
+  },
+  {
+    "page": "Historia",
+    "url": "/historia-lamusica-fm/",
+    "template": "HistoryPage"
+  },
+  {
+    "page": "Nosotros",
+    "url": "/quienes-somos/",
+    "template": "AboutPage"
+  },
+  {
+    "page": "Contacto",
+    "url": "/contacto/",
+    "template": "ContactPage"
+  },
+  {
+    "page": "Blog",
+    "url": "/blog/",
+    "template": "BlogIndexPage"
+  },
+  {
+    "page": "Privacidad",
+    "url": "/politica-de-privacidad/",
+    "template": "LegalPage"
+  },
+  {
+    "page": "Diagnóstico y estructuración",
+    "url": "/servicios/diagnostico-y-estructuracion/",
+    "template": "ServiceFamilyPage"
+  },
+  {
+    "page": "Diagnóstico de Derechos Patrimoniales",
+    "url": "/servicios/diagnostico-y-estructuracion/diagnostico-derechos-patrimoniales/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Implementación y Formalización de Derechos Musicales",
+    "url": "/servicios/diagnostico-y-estructuracion/formalizacion-derechos-musicales/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Aceleración en Derechos Patrimoniales",
+    "url": "/servicios/diagnostico-y-estructuracion/aceleracion-derechos-patrimoniales/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Administración y recaudo",
+    "url": "/servicios/administracion-y-recaudo/",
+    "template": "ServiceFamilyPage"
+  },
+  {
+    "page": "Distribución Digital",
+    "url": "/servicios/administracion-y-recaudo/distribucion-digital/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Administración Fonográfica ACINPRO",
+    "url": "/servicios/administracion-y-recaudo/administracion-fonografica-acinpro/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Administración Editorial SAYCO",
+    "url": "/servicios/administracion-y-recaudo/administracion-editorial-sayco/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Administración Integral de Derechos Patrimoniales",
+    "url": "/servicios/administracion-y-recaudo/administracion-integral-derechos/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Crecimiento y desarrollo",
+    "url": "/servicios/crecimiento-y-desarrollo/",
+    "template": "ServiceFamilyPage"
+  },
+  {
+    "page": "Migración de Distribución Digital",
+    "url": "/servicios/crecimiento-y-desarrollo/migracion-distribucion-digital/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Estrategia e Identidad Digital",
+    "url": "/servicios/crecimiento-y-desarrollo/estrategia-identidad-digital/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Estrategia para Lanzamientos",
+    "url": "/servicios/crecimiento-y-desarrollo/estrategia-lanzamientos/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Modelación de Negocio",
+    "url": "/servicios/crecimiento-y-desarrollo/modelacion-de-negocio/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Sincronización y uso de música",
+    "url": "/servicios/sincronizacion-y-uso-de-musica/",
+    "template": "ServiceFamilyPage"
+  },
+  {
+    "page": "Preparación para Sincronización",
+    "url": "/servicios/sincronizacion-y-uso-de-musica/preparacion-para-sincronizacion/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Sincronización Agencia de Licenciamiento",
+    "url": "/servicios/sincronizacion-y-uso-de-musica/agencia-de-licenciamiento/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Supervisión Musical y Licenciamiento por Brief",
+    "url": "/servicios/sincronizacion-y-uso-de-musica/supervision-musical-por-brief/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Estrategia Musical para Marcas Campañas y Experiencias",
+    "url": "/servicios/sincronizacion-y-uso-de-musica/estrategia-musical-para-marcas/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Formación y consultoría",
+    "url": "/servicios/formacion-y-consultoria/",
+    "template": "ServiceFamilyPage"
+  },
+  {
+    "page": "Formación Especializada",
+    "url": "/servicios/formacion-y-consultoria/formacion-especializada/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Consultoría Especializada",
+    "url": "/servicios/formacion-y-consultoria/consultoria-especializada/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Programas de Fortalecimiento para Instituciones y Grupos",
+    "url": "/servicios/formacion-y-consultoria/programas-de-fortalecimiento/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Ecosistemas y territorio",
+    "url": "/servicios/ecosistemas-y-territorio/",
+    "template": "ServiceFamilyPage"
+  },
+  {
+    "page": "Diseño de Mercados y Encuentros B2B",
+    "url": "/servicios/ecosistemas-y-territorio/mercados-y-encuentros-b2b/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Proyectos de Industria Musical y Ciudad",
+    "url": "/servicios/ecosistemas-y-territorio/industria-musical-y-ciudad/",
+    "template": "ServiceDetailPage"
+  },
+  {
+    "page": "Turismo Musical y Diseño de Experiencias",
+    "url": "/servicios/ecosistemas-y-territorio/turismo-musical-y-experiencias/",
+    "template": "ServiceDetailPage"
+  }
+]

@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{- $projects := where hugo.Data.site.ecosystem.entities "type" "in" (slice "marca y proyecto" "marca y producto") -}}
+<div class="shell page-head">
+  <p class="eyebrow">Ecosistema</p>
+  <h1>Proyectos propios</h1>
+  <p class="lead">Proyectos y productos que LaMúsica.fm impulsa junto con las empresas del ecosistema.</p>
+</div>
+
+<section class="section">
+  <div class="shell">
+    <div class="entity-grid">
+      {{ range $projects }}{{ partial "entity-card.html" (dict "entity" .) }}{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

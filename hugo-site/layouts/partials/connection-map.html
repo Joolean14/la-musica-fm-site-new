@@ -1,0 +1,65 @@
+{{/* Mapa de nodos con equivalente textual siempre visible y filtros por tipo.
+     Los hexágonos son nodos; las líneas, relaciones declaradas en los datos. */}}
+{{- $entities := hugo.Data.site.ecosystem.entities -}}
+{{- $families := hugo.Data.site.services.families -}}
+{{- $nodes := slice -}}
+{{- range $index, $entity := $entities -}}
+  {{- $nodes = $nodes | append (dict "id" (printf "entidad-%d" $index) "label" $entity.name "kind" $entity.type "url" $entity.externalUrl) -}}
+{{- end -}}
+{{- range $index, $family := $families -}}
+  {{- $nodes = $nodes | append (dict "id" (printf "familia-%d" $index) "label" $family.title "kind" "servicio" "url" $family.slug) -}}
+{{- end -}}
+
+<div class="map-filters" role="group" aria-label="Filtrar el mapa por tipo">
+  <button class="map-filter" type="button" data-map-filter="todos" aria-pressed="true">Todos</button>
+  {{ range (slice "empresa" "marca" "proyecto" "servicio" "ciudad") }}
+  <button class="map-filter" type="button" data-map-filter="{{ . }}" aria-pressed="false">{{ humanize . }}</button>
+  {{ end }}
+</div>
+
+<figure class="map-figure">
+  <svg viewBox="0 0 960 520" role="img" aria-labelledby="mapa-titulo mapa-desc">
+    <title id="mapa-titulo">Mapa de conexiones de LaMúsica.fm</title>
+    <desc id="mapa-desc">LaMúsica.fm articula empresas, marcas, proyectos y familias de servicios. La lista siguiente contiene la misma información en texto.</desc>
+    {{ $count := len $nodes }}
+    {{ range $index, $node := $nodes }}
+      {{ $angle := div (mul (mul 2 3.14159265) (float $index)) (float $count) }}
+      {{ $x := add 480.0 (mul 340.0 (math.Cos $angle)) }}
+      {{ $y := add 260.0 (mul 200.0 (math.Sin $angle)) }}
+      <line class="map-edge" x1="480" y1="260" x2="{{ $x }}" y2="{{ $y }}" data-map-item data-kind="{{ $node.kind }}"></line>
+    {{ end }}
+    <g>
+      <polygon class="map-node-shape is-hub" points="480,222 513,241 513,279 480,298 447,279 447,241"></polygon>
+      <text class="map-node-label" x="480" y="264" text-anchor="middle">LaMúsica.fm</text>
+    </g>
+    {{ range $index, $node := $nodes }}
+      {{ $angle := div (mul (mul 2 3.14159265) (float $index)) (float $count) }}
+      {{ $x := add 480.0 (mul 340.0 (math.Cos $angle)) }}
+      {{ $y := add 260.0 (mul 200.0 (math.Sin $angle)) }}
+      <g data-map-item data-kind="{{ $node.kind }}">
+        <polygon class="map-node-shape"
+          points="{{ $x }},{{ sub $y 26 }} {{ add $x 23 }},{{ sub $y 13 }} {{ add $x 23 }},{{ add $y 13 }} {{ $x }},{{ add $y 26 }} {{ sub $x 23 }},{{ add $y 13 }} {{ sub $x 23 }},{{ sub $y 13 }}"></polygon>
+        <text class="map-node-label" x="{{ $x }}" y="{{ add $y 4 }}" text-anchor="middle">{{ substr $node.label 0 14 }}</text>
+      </g>
+    {{ end }}
+  </svg>
+  <figcaption class="post-meta">Cada hexágono es un nodo del ecosistema; cada línea, una relación declarada en los datos.</figcaption>
+</figure>
+
+<div class="map-list">
+  <h2>Lista equivalente de conexiones</h2>
+  <dl>
+    {{ range $node := $nodes }}
+    <div data-map-item data-kind="{{ $node.kind }}">
+      <dt>{{ if $node.url }}<a href="{{ $node.url }}">{{ $node.label }}</a>{{ else }}{{ $node.label }}{{ end }}</dt>
+      <dd>{{ humanize $node.kind }} · conectado con LaMúsica.fm como articulador.</dd>
+    </div>
+    {{ end }}
+    {{ range hugo.Data.connections.relations }}
+    <div data-map-item data-kind="{{ .kind | default "servicio" }}">
+      <dt>{{ .from }} → {{ .to }}</dt>
+      <dd>{{ .description }}</dd>
+    </div>
+    {{ end }}
+  </dl>
+</div>

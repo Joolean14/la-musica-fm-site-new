@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{- $categories := hugo.Data.site.blog.categories -}}
+{{- $posts := where .Site.RegularPages "Type" "posts" -}}
+<div class="shell page-head">
+  <p class="eyebrow">Blog</p>
+  <h1>Memoria publicada</h1>
+  <p class="lead">Artículos sobre derechos, distribución, sincronización, proyectos y ciudad.</p>
+</div>
+
+<section class="section">
+  <div class="shell">
+    <div class="post-filters">
+      <label class="visually-hidden" for="buscar-articulos">Buscar artículos</label>
+      <input class="post-search" id="buscar-articulos" type="search" placeholder="Buscar por título o categoría" data-post-search>
+      <p class="post-meta" data-post-count role="status">{{ len $posts }} artículos</p>
+    </div>
+
+    <nav class="post-filters" aria-label="Categorías del blog">
+      {{ range $categories }}
+      <a class="map-filter" href="/categories/{{ . | urlize }}/">{{ . }}</a>
+      {{ end }}
+    </nav>
+
+    {{ $paginator := .Paginate $posts }}
+    <div class="post-grid">
+      {{ range $paginator.Pages }}
+      <a class="post-card" href="{{ .RelPermalink }}" data-post-card
+         data-search="{{ lower (printf "%s %s" .Title (delimit (.Params.categories | default slice) " ")) }}">
+        {{ with .Params.featured_image }}
+        <img src="{{ . }}" alt="" loading="lazy" decoding="async" width="640" height="400">
+        {{ end }}
+        <p class="post-meta">{{ .Date.Format "2 Jan 2006" }}{{ with .Params.categories }} · {{ delimit . ", " }}{{ end }}</p>
+        <h3>{{ .Title }}</h3>
+      </a>
+      {{ end }}
+    </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav aria-label="Paginación">
+      <ul class="pagination">
+        {{ range $paginator.Pagers }}
+        <li>{{ if eq . $paginator }}<span class="active" aria-current="page">{{ .PageNumber }}</span>
+        {{ else }}<a href="{{ .URL }}">{{ .PageNumber }}</a>{{ end }}</li>
+        {{ end }}
+      </ul>
+    </nav>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

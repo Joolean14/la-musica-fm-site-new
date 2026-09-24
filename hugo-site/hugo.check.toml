@@ -1,0 +1,11 @@
+# Configuración solo para validar plantillas: omite el montaje de 1.8 GB de uploads.
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"

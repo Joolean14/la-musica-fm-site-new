@@ -1,0 +1,46 @@
+{{ define "main" }}
+{{- $city := hugo.Data.site.cityVision -}}
+{{- $entity := index (where hugo.Data.site.ecosystem.entities "name" "Medellín Ciudad de Música") 0 -}}
+
+<div class="shell page-head">
+  {{/* La marca del proyecto vive en su propio módulo, sobre superficie neutral. */}}
+  <div class="entity-logo" style="margin-bottom:24px">{{ partial "brand-logo.html" (dict "entity" $entity "surface" "light") }}</div>
+  <h1>{{ $city.title }}</h1>
+  <p class="lead">{{ $city.intro }}</p>
+  <div class="actions"><a class="button" href="{{ $city.primaryCta.url }}">{{ $city.primaryCta.label }}</a></div>
+</div>
+
+<section class="section" aria-labelledby="proposito">
+  <div class="shell-narrow prose">
+    <h2 id="proposito">Propósito</h2>
+    <p>{{ $city.purpose }}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="secciones">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Estructura del proyecto</p>
+      <h2 id="secciones">Cómo está organizada la visión</h2>
+      <p>Cada tramo se publica a medida que su contenido queda aprobado.</p>
+    </div>
+    <div class="card-grid">
+      {{ range $index, $section := $city.sections }}
+      <article class="card">
+        <span class="need-number">{{ printf "%02d" (add $index 1) }}</span>
+        <h3>{{ $section }}</h3>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="reconocimiento">
+  <div class="shell-narrow">
+    <h2 id="reconocimiento">Reconocimiento CoCrea</h2>
+    <div style="margin-top:24px">{{ partial "document-viewer.html" $city.document }}</div>
+  </div>
+</section>
+
+{{ partial "cta-banner.html" (dict "title" "Formas de participar" "label" $city.primaryCta.label "url" $city.primaryCta.url) }}
+{{ end }}

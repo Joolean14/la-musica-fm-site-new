@@ -1,80 +1,55 @@
-baseURL = "/"
-locale = "es"
+baseURL = "https://lamusica.fm/"
+locale = "es-CO"
+defaultContentLanguage = "es"
 title = "LaMúsica.fm"
 paginate = 12
-enableEmoji = true
+enableRobotsTXT = true
+enableGitInfo = false
 
-# The exported HTML bodies are kept as-is, so raw HTML must render.
+# Los cuerpos exportados de WordPress se conservan tal cual, así que el HTML crudo debe renderizarse.
 [markup.goldmark.renderer]
   unsafe = true
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
 
 [taxonomies]
   category = "categories"
   tag = "tags"
 
-# Serve the original WordPress uploads without copying 1.8 GB into the site.
+# Se sirven los uploads originales sin copiar 1.8 GB dentro del sitio.
 [module]
   [[module.mounts]]
     source = "static"
     target = "static"
   [[module.mounts]]
-    source = "../wordpress-export/wp-content/uploads"
-    target = "static/wp-content/uploads"
-  [[module.mounts]]
     source = "content"
     target = "content"
-
   [[module.mounts]]
-    source = "../wordpress-export/wp-content/themes/Divi"
-    target = "static/wp-content/themes/Divi"
+    source = "assets"
+    target = "assets"
   [[module.mounts]]
-    source = "../wordpress-export/wp-content/et-cache"
-    target = "static/wp-content/et-cache"
-  [[module.mounts]]
-    source = "../wordpress-export/wp-content/plugins"
-    target = "static/wp-content/plugins"
-  [[module.mounts]]
-    source = "../wordpress-export/wp-includes"
-    target = "static/wp-includes"
+    source = "../wordpress-export/wp-content/uploads"
+    target = "static/wp-content/uploads"
 
 [params]
-  description = "Medios, música y artistas independientes."
-  wp_chrome_styles = [
-    "/wp-content/themes/Divi/style-static.min.css",
-    "/wp-content/et-cache/11/et-core-unified-tb-22351-tb-21563-11.min.css",
-    "/wp-content/et-cache/11/et-core-unified-tb-22351-tb-21563-deferred-11.min.css",
-  ]
-  logo = "/wp-content/uploads/2023/02/Logo-LaMusica.fm_.webp"
+  description = "LaMúsica.fm conecta música, derechos, proyectos, empresas y ciudad."
+  logo = "/brand/logo-lamusica.png"
+  ogImage = "/brand/logo-lamusica.png"
+  # Destino del formulario: lo resuelve el servidor, nunca el JavaScript público.
+  contactEndpoint = "/api/contacto"
 
-[[menu.main]]
-  name = "Inicio"
-  url = "/"
-  weight = 1
-[[menu.main]]
-  name = "Quiénes Somos"
-  url = "/quienes-somos/"
-  weight = 2
-[[menu.main]]
-  name = "Aceleración en Derechos"
-  url = "/aceleracion-en-derechos-patrimoniales-y-registros-musicales/"
-  weight = 3
-[[menu.main]]
-  name = "Aceleración en Comunicación"
-  url = "/aceleracion-en-comunicacion-y-marketing/"
-  weight = 4
-[[menu.main]]
-  name = "Aceleración en Sincronización"
-  url = "/aceleracion-en-sincronizacion-musical/"
-  weight = 5
-[[menu.main]]
-  name = "Blog"
-  url = "/blog/"
-  weight = 6
-[[menu.main]]
-  name = "Contacto"
-  url = "/contacto/"
-  weight = 7
-
-# Keep the original WordPress URLs (/slug/) instead of /posts/slug/.
 [permalinks]
   posts = "/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+
+# El marcado heredado de Divi rompe el minificador de HTML.
+# CSS y JS sí se minifican en el pipeline de assets.
+[minify]
+  disableHTML = true

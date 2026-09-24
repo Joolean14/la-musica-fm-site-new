@@ -1,0 +1,96 @@
+{{/* Formulario guiado: cuatro pasos más consentimiento.
+     El contexto (need, family, service, route) llega por query string y lo precarga site.js.
+     El destino real vive en el servidor; aquí solo se conoce la ruta del endpoint. */}}
+{{- $contact := hugo.Data.site.contact -}}
+{{- $needs := hugo.Data.site.services.needs -}}
+{{- $fields := hugo.Data.site.contact -}}
+{{- $definitions := hugo.Data.form_fields -}}
+
+<p class="context-note" data-context-note hidden></p>
+
+<form class="form-steps" method="post" action="{{ .Site.Params.contactEndpoint }}" data-contact-form novalidate>
+  <div class="form-summary" data-form-summary role="alert" tabindex="-1" hidden></div>
+
+  {{/* Contexto recibido de Inicio, Servicios o una ficha. */}}
+  <input type="hidden" name="need" data-context-field="need" value="">
+  <input type="hidden" name="family" data-context-field="family" value="">
+  <input type="hidden" name="service" data-context-field="service" value="">
+  <input type="hidden" name="route" data-context-field="route" value="">
+  {{/* Trampa anti-spam: las personas no la ven ni la llenan. */}}
+  <p class="visually-hidden" aria-hidden="true"><label>No llenar este campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+
+  {{ range $stepIndex, $step := $contact.steps }}
+  <fieldset class="form-step">
+    <legend>
+      <span class="step-number">Paso {{ add $stepIndex 1 }} de {{ len $contact.steps }}</span>
+      {{ $step.label }}
+    </legend>
+
+    {{ if eq $step.type "singleSelect" }}
+      <div class="choice-list">
+        {{ $options := $step.options }}
+        {{ if eq ($step.optionsFrom | default "") "services.needs" }}
+          {{ range $needs }}
+          <label class="choice">
+            <input type="radio" name="{{ $step.id }}" value="{{ .id }}" required>
+            <span>{{ .label }}</span>
+          </label>
+          {{ end }}
+        {{ else }}
+          {{ range $options }}
+          <label class="choice">
+            <input type="radio" name="{{ $step.id }}" value="{{ . }}" required>
+            <span>{{ . }}</span>
+          </label>
+          {{ end }}
+        {{ end }}
+        <p class="field-error" data-error-for="{{ $step.id }}"></p>
+      </div>
+
+    {{ else if eq $step.type "conditionalFields" }}
+      <div class="field">
+        <label for="routeDetails">{{ $definitions.routeDetails.label }}</label>
+        <span class="hint" id="routeDetails-hint">{{ $definitions.routeDetails.hint }}</span>
+        <textarea id="routeDetails" name="routeDetails" aria-describedby="routeDetails-hint" required></textarea>
+        <p class="field-error" data-error-for="routeDetails"></p>
+      </div>
+
+    {{ else if eq $step.type "fields" }}
+      {{ range $fieldName := $step.fields }}
+        {{ $definition := index $definitions.fields $fieldName }}
+        <div class="field">
+          <label for="{{ $fieldName }}">{{ $definition.label }}</label>
+          {{ with $definition.hint }}<span class="hint" id="{{ $fieldName }}-hint">{{ . }}</span>{{ end }}
+          {{ if eq $definition.type "select" }}
+            <select id="{{ $fieldName }}" name="{{ $fieldName }}"{{ if $definition.required }} required{{ end }}>
+              <option value="">Selecciona una opción</option>
+              {{ range $definition.options }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+            </select>
+          {{ else }}
+            <input type="{{ $definition.type }}" id="{{ $fieldName }}" name="{{ $fieldName }}"
+              {{ with $definition.autocomplete }}autocomplete="{{ . }}"{{ end }}
+              {{ with $definition.hint }}aria-describedby="{{ $fieldName }}-hint"{{ end }}
+              {{ if $definition.required }} required{{ end }}>
+          {{ end }}
+          <p class="field-error" data-error-for="{{ $fieldName }}"></p>
+        </div>
+      {{ end }}
+
+    {{ else if eq $step.type "consent" }}
+      <div class="field">
+        <label class="consent" for="privacy">
+          <input type="checkbox" id="privacy" name="privacy" value="si"{{ if $step.required }} required{{ end }}>
+          <span>{{ $step.label }}. Puedes leer la <a href="{{ $step.policyUrl }}">política de privacidad</a>.</span>
+        </label>
+        <p class="field-error" data-error-for="privacy"></p>
+      </div>
+    {{ end }}
+  </fieldset>
+  {{ end }}
+
+  <div>
+    <button class="button" type="submit">{{ $contact.submitLabel }}</button>
+    <p class="form-status" data-form-status role="status"
+       data-success-message="{{ $contact.successMessage }}"></p>
+  </div>
+</form>

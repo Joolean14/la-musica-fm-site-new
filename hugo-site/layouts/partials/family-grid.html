@@ -1,0 +1,21 @@
+{{/* Las seis familias con sus servicios. Contexto: dict "context" página, "headingLevel". */}}
+{{- $families := .contexthugo.Data.site.services.families -}}
+<div class="family-list">
+  {{ range $familyIndex, $family := $families }}
+  <section class="family" aria-labelledby="familia-{{ $familyIndex }}">
+    <div class="family-head">
+      <h3 id="familia-{{ $familyIndex }}"><a href="{{ $family.slug }}">{{ $family.title }}</a></h3>
+      <p>{{ $family.intro }}</p>
+    </div>
+    <div class="card-grid">
+      {{ range $family.services }}
+      <a class="card" href="{{ .slug }}">
+        <h4>{{ .name }}</h4>
+        <p>{{ .question }}</p>
+        <span class="card-action">Ver el servicio <span aria-hidden="true">→</span></span>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</div>

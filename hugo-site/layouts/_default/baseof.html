@@ -1,37 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="{{ hugo.Data.site.site.language | default "es-CO" }}">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}</title>
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-<link rel="icon" href="/wp-content/uploads/2023/02/cropped-favicon_lmfm-32x32.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700%7CPoppins:300,400,500,600&amp;display=swap">
-{{/* The Divi header and footer are reused verbatim, so they need Divi's CSS. */}}
-{{ range site.Params.wp_chrome_styles }}<link rel="stylesheet" href="{{ . }}">
-{{ end }}
-{{/* Divi builder posts additionally need their own per-page stylesheets. */}}
-{{ range .Params.wp_styles }}<link rel="stylesheet" href="{{ . }}">
-{{ end }}
-<link rel="stylesheet" href="/css/site.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ partial "head-seo.html" . }}
+  {{ partial "head-fonts.html" . }}
+  {{ with resources.Get "css/site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{ end }}
+  <link rel="icon" href="{{ .Site.Params.logo }}">
 </head>
-<body class="et-db et_pb_button_helper_class et_divi_theme et_header_style_left">
-<div id="page-container">
-<div id="et-boc" class="et-boc">
-{{ partial "wp-header.html" . }}
-<main class="blog-main">{{ block "main" . }}{{ end }}</main>
-{{ partial "wp-footer.html" . }}
-</div>
-</div>
-<script src="/wp-includes/js/jquery/jquery.min.js"></script>
-<script>
-/* Divi's mobile menu toggle, reduced to the one behaviour the blog needs. */
-document.addEventListener("click", function (event) {
-  var toggle = event.target.closest(".mobile_menu_bar");
-  if (!toggle) return;
-  var nav = toggle.closest(".et_mobile_nav_menu");
-  if (nav) nav.querySelector(".mobile_nav").classList.toggle("opened");
-});
-</script>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  {{ partial "site-header.html" . }}
+  <main id="contenido">
+    {{ if ne .RelPermalink "/" }}{{ partial "breadcrumbs.html" . }}{{ end }}
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "site-footer.html" . }}
+  {{ partial "schema.html" . }}
+  <script src="{{ (resources.Get "js/site.js" | minify | fingerprint).RelPermalink }}" defer></script>
 </body>
 </html>

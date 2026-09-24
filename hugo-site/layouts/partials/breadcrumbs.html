@@ -1,0 +1,25 @@
+{{/* Migas construidas desde routes.csv: solo enlaza rutas que existen. */}}
+{{- $routes := hugo.Data.routes -}}
+{{- $crumbs := slice (dict "label" "Inicio" "url" "/") -}}
+{{- $accumulated := "/" -}}
+{{- range $segment := split (strings.Trim .RelPermalink "/") "/" -}}
+  {{- if $segment -}}
+    {{- $accumulated = printf "%s%s/" $accumulated $segment -}}
+    {{- range $routes -}}
+      {{- if eq .url $accumulated -}}
+        {{- $crumbs = $crumbs | append (dict "label" .page "url" .url) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<nav class="breadcrumbs shell" aria-label="Migas de pan">
+  <ol>
+    {{ range $index, $crumb := $crumbs }}
+    <li>
+      {{ if eq (add $index 1) (len $crumbs) }}<span aria-current="page">{{ $crumb.label }}</span>
+      {{ else }}<a href="{{ $crumb.url }}">{{ $crumb.label }}</a>{{ end }}
+    </li>
+    {{ end }}
+    {{ if and (eq (len $crumbs) 1) (ne .RelPermalink "/") }}<li><span aria-current="page">{{ .Title }}</span></li>{{ end }}
+  </ol>
+</nav>

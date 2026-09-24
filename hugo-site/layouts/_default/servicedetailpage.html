@@ -1,0 +1,52 @@
+{{ define "main" }}
+{{- $family := index hugo.Data.site.services.families .Params.familyIndex -}}
+{{- $service := index $family.services .Params.serviceIndex -}}
+{{- $need := index hugo.Data.site.services.needs .Params.familyIndex -}}
+{{- $contactUrl := printf "/contacto/?need=%s&family=%s&service=%s" (urlquery $need.id) (urlquery $family.title) (urlquery $service.name) -}}
+
+<div class="shell page-head">
+  <p class="eyebrow"><a href="{{ $family.slug }}">{{ $family.title }}</a></p>
+  <h1>{{ $service.name }}</h1>
+  <p class="service-question">{{ $service.question }}</p>
+  <p class="lead">{{ $service.copy }}</p>
+</div>
+
+<section class="section">
+  <div class="shell">
+    <div class="service-blocks">
+      {{ with $service.deliverables }}
+      <div class="service-block">
+        <h2>Qué entregamos</h2>
+        <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      </div>
+      {{ end }}
+      {{ with $service.commercial }}
+      <div class="service-block">
+        <h2>Condición comercial</h2>
+        <p>{{ . }}</p>
+      </div>
+      {{ end }}
+      {{ with $service.limits }}
+      <div class="service-block">
+        <h2>Límites del servicio</h2>
+        <p>{{ . }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ partial "cta-banner.html" (dict "title" $service.cta "label" $service.cta "url" $contactUrl) }}
+
+<section class="section">
+  <div class="shell">
+    <h2>Otros servicios de {{ $family.title }}</h2>
+    <div class="card-grid">
+      {{ range $family.services }}{{ if ne .slug $service.slug }}
+      <a class="card" href="{{ .slug }}"><h3>{{ .name }}</h3><p>{{ .question }}</p>
+        <span class="card-action">Ver el servicio <span aria-hidden="true">→</span></span></a>
+      {{ end }}{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

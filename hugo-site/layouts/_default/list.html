@@ -1,9 +1,32 @@
 {{ define "main" }}
-<header class="page-head"><h1>{{ .Title }}</h1></header>
-{{ .Content }}
-{{ $paged := .Paginate .Pages }}
-<div class="grid">
-  {{ range $paged.Pages }}{{ partial "card.html" . }}{{ end }}
+<div class="shell page-head">
+  <p class="eyebrow">{{ .Kind | humanize }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="lead prose">{{ . }}</div>{{ end }}
 </div>
-{{ template "_internal/pagination.html" . }}
+
+<section class="section">
+  <div class="shell">
+    {{ $paginator := .Paginate .Pages }}
+    <div class="post-grid">
+      {{ range $paginator.Pages }}
+      <a class="post-card" href="{{ .RelPermalink }}">
+        {{ with .Params.featured_image }}<img src="{{ . }}" alt="" loading="lazy" width="640" height="400">{{ end }}
+        <p class="post-meta">{{ .Date.Format "2 Jan 2006" }}</p>
+        <h3>{{ .Title }}</h3>
+      </a>
+      {{ end }}
+    </div>
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav aria-label="Paginación">
+      <ul class="pagination">
+        {{ range $paginator.Pagers }}
+        <li>{{ if eq . $paginator }}<span class="active" aria-current="page">{{ .PageNumber }}</span>
+        {{ else }}<a href="{{ .URL }}">{{ .PageNumber }}</a>{{ end }}</li>
+        {{ end }}
+      </ul>
+    </nav>
+    {{ end }}
+  </div>
+</section>
 {{ end }}

@@ -1,0 +1,7 @@
+# Variables que debe definir el servidor. Copiar al entorno real (systemd, php-fpm
+# pool o panel del hosting). Ningún valor real se versiona en el repositorio.
+
+LMFM_CONTACT_TO=          # destinatario de las consultas
+LMFM_CONTACT_FROM=        # remitente autenticado del servidor de correo
+LMFM_CONTACT_LOG=/var/log/lamusica/contacto.log
+LMFM_CONTACT_ORIGIN=https://lamusica.fm

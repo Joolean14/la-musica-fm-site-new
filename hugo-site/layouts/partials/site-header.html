@@ -1,0 +1,29 @@
+{{- $site := hugo.Data.site.site -}}
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="{{ $site.name }}, inicio">
+      <img src="{{ .Site.Params.logo }}" alt="{{ $site.name }}" width="88" height="88">
+    </a>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      {{ range $site.navigation }}
+      <a href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ end }}>{{ .label }}</a>
+      {{ end }}
+    </nav>
+
+    <a class="button button-small" href="{{ $site.headerCta.url }}">{{ $site.headerCta.label }}</a>
+
+    <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="menu-movil">
+      <span></span><span></span>
+      <span class="visually-hidden">Abrir menú</span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav shell" id="menu-movil" data-mobile-nav data-open="false" aria-label="Navegación principal móvil">
+    <ul>
+      {{ range $site.navigation }}<li><a href="{{ .url }}">{{ .label }}</a></li>{{ end }}
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+    <a class="button" href="{{ $site.headerCta.url }}">{{ $site.headerCta.label }}</a>
+  </nav>
+</header>

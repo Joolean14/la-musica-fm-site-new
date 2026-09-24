@@ -1,0 +1,31 @@
+{{ define "main" }}
+{{- $family := index hugo.Data.site.services.families .Params.familyIndex -}}
+<div class="shell page-head">
+  <p class="eyebrow">Familia de servicios</p>
+  <h1>{{ $family.title }}</h1>
+  <p class="lead">{{ $family.intro }}</p>
+</div>
+
+<section class="section" aria-labelledby="servicios-familia">
+  <div class="shell">
+    <h2 id="servicios-familia" class="visually-hidden">Servicios de esta familia</h2>
+    <div class="card-grid">
+      {{ range $family.services }}
+      <a class="card" href="{{ .slug }}">
+        <h3>{{ .name }}</h3>
+        <p>{{ .question }}</p>
+        <span class="card-action">Ver el servicio <span aria-hidden="true">→</span></span>
+      </a>
+      {{ end }}
+    </div>
+    <div class="section-close">
+      <a class="text-link" href="/servicios/">Ver todas las familias <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+{{ partial "cta-banner.html" (dict
+  "title" "¿Esta ruta se parece a lo que necesitas?"
+  "label" hugo.Data.site.site.headerCta.label
+  "url" (printf "/contacto/?family=%s" (urlquery $family.title))) }}
+{{ end }}

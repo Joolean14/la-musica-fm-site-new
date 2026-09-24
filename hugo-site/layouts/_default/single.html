@@ -1,22 +1,19 @@
 {{ define "main" }}
-{{ $divi := .Params.wp_styles }}
-<article class="post{{ if $divi }} post--divi{{ end }}">
-  <h1>{{ .Title }}</h1>
-  {{ if eq .Section "posts" }}
-  <p class="meta">{{ .Date.Format "2 Jan 2006" }}
-    {{ range .Params.categories }} · <a href="/categories/{{ . | urlize }}/">{{ . }}</a>{{ end }}
-  </p>
-  {{ end }}
-  {{/* Divi styles key off these wrappers, so builder content is nested the way it was exported. */}}
-  {{ if $divi }}
-  <div id="et-boc" class="et-boc"><div class="et-l et-l--post"><div class="et_builder_inner_content et_pb_gutters3">
-    {{ .Content }}
-  </div></div></div>
-  {{ else }}
-  <div class="content">{{ .Content }}</div>
-  {{ end }}
-  {{ with .Params.tags }}
-  <p class="tags">{{ range . }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}</p>
-  {{ end }}
+<article>
+  <div class="shell-narrow page-head">
+    <p class="eyebrow">{{ with .Params.categories }}{{ index . 0 }}{{ else }}Blog{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="post-meta">
+      Publicado el <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+      {{ if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}
+      · Actualizado el <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2 Jan 2006" }}</time>
+      {{ end }}
+      · {{ hugo.Data.site.site.name }}
+    </p>
+  </div>
+
+  <div class="shell-narrow prose post-body">{{ .Content }}</div>
 </article>
+
+{{ partial "cta-banner.html" (dict "title" "¿Necesitas resolver algo parecido?" "label" hugo.Data.site.site.headerCta.label "url" "/contacto/") }}
 {{ end }}

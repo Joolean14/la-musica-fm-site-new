@@ -4,3 +4,4 @@ hugo-site/.hugo_build.lock
 hugo-site/resources/
 .env
 *.env
+hugo-site/resources/

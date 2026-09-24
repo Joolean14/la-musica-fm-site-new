@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{- $ecosystem := hugo.Data.site.ecosystem -}}
+<div class="shell page-head">
+  <p class="eyebrow">Ecosistema</p>
+  <h1>{{ $ecosystem.title }}</h1>
+  <p class="lead">{{ $ecosystem.intro }}</p>
+</div>
+
+<section class="section" aria-labelledby="rutas-ecosistema">
+  <div class="shell">
+    <h2 id="rutas-ecosistema">Cómo recorrerlo</h2>
+    <div class="card-grid card-grid-2" style="margin-top:28px">
+      {{ range $ecosystem.routes }}
+      <a class="card" href="{{ .url }}"><h3>{{ .label }}</h3>
+        <span class="card-action">Entrar <span aria-hidden="true">→</span></span></a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="entidades">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Identidades</p>
+      <h2 id="entidades">Cada marca conserva su propio módulo</h2>
+      <p>LaMúsica.fm aporta la estructura; ninguna identidad se recolorea ni se combina con otra.</p>
+    </div>
+    <div class="entity-grid">
+      {{ range $ecosystem.entities }}{{ partial "entity-card.html" (dict "entity" .) }}{{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="mapa">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Conexiones</p>
+      <h2 id="mapa">Mapa de conexiones</h2>
+      <p>Vista por nodos con su equivalente en texto.</p>
+    </div>
+    {{ partial "connection-map.html" . }}
+  </div>
+</section>
+{{ end }}

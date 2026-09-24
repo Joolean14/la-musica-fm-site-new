@@ -1,0 +1,12 @@
+{{ define "main" }}
+{{- $contact := hugo.Data.site.contact -}}
+<div class="shell page-head">
+  <p class="eyebrow">Contacto</p>
+  <h1>{{ $contact.title }}</h1>
+  <p class="lead">Cuatro pasos para entender tu caso y responderte por el canal que prefieras.</p>
+</div>
+
+<section class="section">
+  <div class="shell">{{ partial "contact-form.html" . }}</div>
+</section>
+{{ end }}

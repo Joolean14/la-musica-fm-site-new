@@ -1,0 +1,80 @@
+baseURL = "/"
+locale = "es"
+title = "LaMúsica.fm"
+paginate = 12
+enableEmoji = true
+
+# The exported HTML bodies are kept as-is, so raw HTML must render.
+[markup.goldmark.renderer]
+  unsafe = true
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+# Serve the original WordPress uploads without copying 1.8 GB into the site.
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "../wordpress-export/wp-content/uploads"
+    target = "static/wp-content/uploads"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+
+  [[module.mounts]]
+    source = "../wordpress-export/wp-content/themes/Divi"
+    target = "static/wp-content/themes/Divi"
+  [[module.mounts]]
+    source = "../wordpress-export/wp-content/et-cache"
+    target = "static/wp-content/et-cache"
+  [[module.mounts]]
+    source = "../wordpress-export/wp-content/plugins"
+    target = "static/wp-content/plugins"
+  [[module.mounts]]
+    source = "../wordpress-export/wp-includes"
+    target = "static/wp-includes"
+
+[params]
+  description = "Medios, música y artistas independientes."
+  wp_chrome_styles = [
+    "/wp-content/themes/Divi/style-static.min.css",
+    "/wp-content/et-cache/11/et-core-unified-tb-22351-tb-21563-11.min.css",
+    "/wp-content/et-cache/11/et-core-unified-tb-22351-tb-21563-deferred-11.min.css",
+  ]
+  logo = "/wp-content/uploads/2023/02/Logo-LaMusica.fm_.webp"
+
+[[menu.main]]
+  name = "Inicio"
+  url = "/"
+  weight = 1
+[[menu.main]]
+  name = "Quiénes Somos"
+  url = "/quienes-somos/"
+  weight = 2
+[[menu.main]]
+  name = "Aceleración en Derechos"
+  url = "/aceleracion-en-derechos-patrimoniales-y-registros-musicales/"
+  weight = 3
+[[menu.main]]
+  name = "Aceleración en Comunicación"
+  url = "/aceleracion-en-comunicacion-y-marketing/"
+  weight = 4
+[[menu.main]]
+  name = "Aceleración en Sincronización"
+  url = "/aceleracion-en-sincronizacion-musical/"
+  weight = 5
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 6
+[[menu.main]]
+  name = "Contacto"
+  url = "/contacto/"
+  weight = 7
+
+# Keep the original WordPress URLs (/slug/) instead of /posts/slug/.
+[permalinks]
+  posts = "/:slug/"

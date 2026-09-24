@@ -1,0 +1,13 @@
+{{/* Elige la variante del logo según la superficie. Nunca se recolorea ni se recorta.
+     Contexto: dict "entity" entidad del JSON, "surface" ("light" o "dark"). */}}
+{{- $assets := .entity.brandAssets -}}
+{{- $surface := .surface | default "light" -}}
+{{- $path := "" -}}
+{{- if eq $surface "dark" -}}
+  {{- $path = or (index $assets "light") (index $assets "primary") (index $assets "dark") -}}
+{{- else -}}
+  {{- $path = or (index $assets "primary") (index $assets "dark") (index $assets "light") -}}
+{{- end -}}
+{{- with $path -}}
+<img src="/{{ strings.TrimPrefix "assets/" . }}" alt="{{ $.entity.name }}" width="180" height="64" loading="lazy" decoding="async">
+{{- end -}}

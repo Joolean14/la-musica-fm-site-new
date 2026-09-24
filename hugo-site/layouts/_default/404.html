@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="shell page-head">
+  <p class="eyebrow">Error 404</p>
+  <h1>No encontramos esa página</h1>
+  <p class="lead">Puede que el enlace haya cambiado. Estas rutas siguen disponibles:</p>
+  <div class="card-grid" style="margin-top:32px">
+    {{ range hugo.Data.site.site.navigation }}
+    <a class="card" href="{{ .url }}"><h2>{{ .label }}</h2>
+      <span class="card-action">Entrar <span aria-hidden="true">→</span></span></a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

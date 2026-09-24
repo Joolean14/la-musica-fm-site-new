@@ -1,8 +1,0 @@
-<article class="card">
-  {{ with .Params.featured_image }}<a href="{{ $.RelPermalink }}"><img src="{{ . }}" alt="" loading="lazy"></a>{{ end }}
-  <div class="card-body">
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <p class="meta">{{ .Date.Format "2 Jan 2006" }}{{ with .Params.categories }} · {{ index . 0 }}{{ end }}</p>
-    <p>{{ .Summary | plainify | truncate 160 }}</p>
-  </div>
-</article>

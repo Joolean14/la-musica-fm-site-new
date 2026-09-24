@@ -1,0 +1,4 @@
+{
+  "_comment": "Relaciones explícitas del mapa de conexiones. Cada entrada enlaza dos nodos por id. Los nodos de entidad usan el id 'entidad-<n>' y los de familia 'familia-<n>', según el orden en site.json. Mientras esta lista esté vacía el mapa solo muestra la pertenencia al articulador, que sí está declarada en el contenido.",
+  "relations": []
+}

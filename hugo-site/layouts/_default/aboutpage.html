@@ -1,0 +1,51 @@
+{{ define "main" }}
+{{- $about := hugo.Data.site.about -}}
+{{- $site := hugo.Data.site.site -}}
+<div class="shell page-head">
+  <p class="eyebrow">Nosotros</p>
+  <h1>{{ $about.title }}</h1>
+  <p class="lead">{{ $about.definition }}</p>
+</div>
+
+<section class="section">
+  <div class="shell">
+    <div class="service-blocks">
+      <div class="service-block"><h2>Propósito</h2><p>{{ $about.purpose }}</p></div>
+      <div class="service-block"><h2>Visión</h2><p>{{ $about.vision }}</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="capacidades">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Capacidades</p>
+      <h2 id="capacidades">Lo que sabemos hacer</h2>
+      <p>Cada capacidad se conecta con una familia de servicios y con las empresas del ecosistema.</p>
+    </div>
+    <div class="card-grid">
+      {{ range $about.capabilities }}<article class="card"><h3>{{ . }}</h3></article>{{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="metodo">
+  <div class="shell-narrow">
+    <h2 id="metodo">Método</h2>
+    <ol class="timeline" style="margin-top:28px">
+      {{ range $index, $stage := $about.method }}
+      <li><span class="year">{{ printf "%02d" (add $index 1) }}</span><h3>{{ $stage }}</h3></li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="datos">
+  <div class="shell-narrow prose">
+    <h2 id="datos">Datos empresariales</h2>
+    <p>{{ $site.legalName }}<br>NIT {{ $site.nit }}<br>{{ $site.address }}</p>
+  </div>
+</section>
+
+{{ partial "cta-banner.html" (dict "title" "Empecemos por lo que necesitas" "label" $site.headerCta.label "url" "/contacto/") }}
+{{ end }}

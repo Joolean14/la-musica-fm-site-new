@@ -1,0 +1,15 @@
+{{/* Ficha de empresa, marca o proyecto. No renderiza campos vacíos. */}}
+{{- $entity := .entity -}}
+<article class="entity-card">
+  <div class="entity-logo">{{ partial "brand-logo.html" (dict "entity" $entity "surface" "light") }}</div>
+  <p class="entity-type">{{ $entity.type }}</p>
+  <h3>{{ $entity.name }}</h3>
+  {{ with $entity.description }}<p>{{ . }}</p>{{ end }}
+  {{ with $entity.externalUrl }}
+  <a class="text-link" href="{{ . }}">
+    Ver {{ $entity.name }}
+    <span aria-hidden="true">{{ if hasPrefix . "http" }}↗{{ else }}→{{ end }}</span>
+    {{ if hasPrefix . "http" }}<span class="visually-hidden">(sitio externo)</span>{{ end }}
+  </a>
+  {{ end }}
+</article>

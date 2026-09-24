@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="shell page-head">
+  <h1>{{ .Title }}</h1>
+</div>
+<section class="section">
+  <div class="shell-narrow prose">
+    {{ if .Content }}{{ .Content }}
+    {{ else }}
+    {{/* El texto legal vigente no viene en el paquete de contenido; debe cargarlo LaMúsica.fm. */}}
+    <p>El texto vigente de la política de privacidad debe cargarse en <code>content/politica-de-privacidad/_index.md</code> antes de publicar.</p>
+    <p>Responsable del tratamiento: {{ hugo.Data.site.site.legalName }}, NIT {{ hugo.Data.site.site.nit }}, {{ hugo.Data.site.site.address }}.</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

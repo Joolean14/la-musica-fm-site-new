@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{- $history := hugo.Data.site.history -}}
+<div class="shell page-head">
+  <p class="eyebrow">Historia</p>
+  <h1>{{ $history.title }}</h1>
+  <p class="lead">{{ $history.intro }}</p>
+</div>
+
+<section class="section" aria-labelledby="cronologia">
+  <div class="shell-narrow">
+    <h2 id="cronologia">Cronología</h2>
+    <ol class="timeline" style="margin-top:32px">
+      {{ range $history.milestones }}
+      <li><span class="year">{{ .year }}</span><h3>{{ .title }}</h3><p>{{ .text }}</p></li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="archivo">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Archivo</p>
+      <h2 id="archivo">Interfaces anteriores</h2>
+      <p>Las versiones previas del sitio se conservan como documento, sin filtros que alteren su lectura.</p>
+    </div>
+    <div class="card-grid">
+      {{ range .Site.RegularPages.ByParam "archiveYear" }}
+      {{ if .Params.archiveYear }}
+      <a class="card" href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3>
+        <p>Versión conservada del sitio.</p>
+        <span class="card-action">Abrir <span aria-hidden="true">→</span></span></a>
+      {{ end }}
+      {{ end }}
+    </div>
+    <p class="lead">Años documentados en el archivo del proyecto: {{ delimit $history.archiveYears ", " " y " }}.</p>
+  </div>
+</section>
+
+{{ partial "cta-banner.html" (dict "title" "El ecosistema explica lo que somos hoy" "label" "Explorar el ecosistema" "url" "/ecosistema/") }}
+{{ end }}

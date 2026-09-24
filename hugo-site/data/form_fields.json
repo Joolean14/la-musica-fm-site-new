@@ -1,0 +1,18 @@
+{
+  "_comment": "Etiquetas de los campos del paso 'Tus datos'. site-content.json solo trae los identificadores, así que estas etiquetas están pendientes de confirmación editorial.",
+  "fields": {
+    "name": { "label": "Nombre y apellido", "type": "text", "autocomplete": "name", "required": true },
+    "organization": { "label": "Proyecto, empresa o entidad", "type": "text", "autocomplete": "organization", "required": false },
+    "email": { "label": "Correo electrónico", "type": "email", "autocomplete": "email", "required": true },
+    "whatsappOptional": { "label": "WhatsApp (opcional)", "type": "tel", "autocomplete": "tel", "required": false },
+    "city": { "label": "Ciudad", "type": "text", "autocomplete": "address-level2", "required": true },
+    "country": { "label": "País", "type": "text", "autocomplete": "country-name", "required": true },
+    "relevantUrlOptional": { "label": "Enlace relevante (opcional)", "type": "url", "required": false, "hint": "Perfil, catálogo o documento que ayude a entender el caso." },
+    "preferredChannel": { "label": "Canal de contacto preferido", "type": "select", "required": true, "options": ["Correo electrónico", "WhatsApp", "Llamada"] }
+  },
+  "routeDetails": {
+    "label": "Cuéntanos el contexto de tu ruta",
+    "hint": "Describe la situación actual, lo que ya intentaste y el resultado que buscas.",
+    "required": true
+  }
+}

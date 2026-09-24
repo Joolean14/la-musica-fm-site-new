@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{- $services := hugo.Data.site.services -}}
+<div class="shell page-head">
+  <p class="eyebrow">Servicios</p>
+  <h1>{{ $services.title }}</h1>
+  <p class="lead">{{ $services.intro }}</p>
+</div>
+
+<section class="section" aria-labelledby="necesidades">
+  <div class="shell">{{ partial "need-selector.html" (dict "context" .) }}</div>
+</section>
+
+<section class="section" aria-labelledby="familias">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="eyebrow">Seis familias</p>
+      <h2 id="familias">Cada necesidad tiene una ruta y un siguiente paso</h2>
+      <p>Las familias agrupan los 21 servicios disponibles.</p>
+    </div>
+    {{ partial "family-grid.html" (dict "context" .) }}
+  </div>
+</section>
+
+{{ partial "cta-banner.html" (dict "title" "Empecemos por lo que necesitas" "label" hugo.Data.site.site.headerCta.label "url" "/contacto/") }}
+{{ end }}
