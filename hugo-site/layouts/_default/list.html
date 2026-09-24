@@ -1,0 +1,9 @@
+{{ define "main" }}
+<header class="page-head"><h1>{{ .Title }}</h1></header>
+{{ .Content }}
+{{ $paged := .Paginate .Pages }}
+<div class="grid">
+  {{ range $paged.Pages }}{{ partial "card.html" . }}{{ end }}
+</div>
+{{ template "_internal/pagination.html" . }}
+{{ end }}

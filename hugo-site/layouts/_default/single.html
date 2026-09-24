@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{ $divi := .Params.wp_styles }}
+<article class="post{{ if $divi }} post--divi{{ end }}">
+  <h1>{{ .Title }}</h1>
+  {{ if eq .Section "posts" }}
+  <p class="meta">{{ .Date.Format "2 Jan 2006" }}
+    {{ range .Params.categories }} · <a href="/categories/{{ . | urlize }}/">{{ . }}</a>{{ end }}
+  </p>
+  {{ end }}
+  {{/* Divi styles key off these wrappers, so builder content is nested the way it was exported. */}}
+  {{ if $divi }}
+  <div id="et-boc" class="et-boc"><div class="et-l et-l--post"><div class="et_builder_inner_content et_pb_gutters3">
+    {{ .Content }}
+  </div></div></div>
+  {{ else }}
+  <div class="content">{{ .Content }}</div>
+  {{ end }}
+  {{ with .Params.tags }}
+  <p class="tags">{{ range . }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}</p>
+  {{ end }}
+</article>
+{{ end }}

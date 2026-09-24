@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+<link rel="icon" href="/wp-content/uploads/2023/02/cropped-favicon_lmfm-32x32.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700%7CPoppins:300,400,500,600&amp;display=swap">
+{{/* The Divi header and footer are reused verbatim, so they need Divi's CSS. */}}
+{{ range site.Params.wp_chrome_styles }}<link rel="stylesheet" href="{{ . }}">
+{{ end }}
+{{/* Divi builder posts additionally need their own per-page stylesheets. */}}
+{{ range .Params.wp_styles }}<link rel="stylesheet" href="{{ . }}">
+{{ end }}
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="et-db et_pb_button_helper_class et_divi_theme et_header_style_left">
+<div id="page-container">
+<div id="et-boc" class="et-boc">
+{{ partial "wp-header.html" . }}
+<main class="blog-main">{{ block "main" . }}{{ end }}</main>
+{{ partial "wp-footer.html" . }}
+</div>
+</div>
+<script src="/wp-includes/js/jquery/jquery.min.js"></script>
+<script>
+/* Divi's mobile menu toggle, reduced to the one behaviour the blog needs. */
+document.addEventListener("click", function (event) {
+  var toggle = event.target.closest(".mobile_menu_bar");
+  if (!toggle) return;
+  var nav = toggle.closest(".et_mobile_nav_menu");
+  if (nav) nav.querySelector(".mobile_nav").classList.toggle("opened");
+});
+</script>
+</body>
+</html>

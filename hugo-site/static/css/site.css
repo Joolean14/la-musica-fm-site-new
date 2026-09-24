@@ -1,0 +1,140 @@
+/* Blog styles, using the same tokens as the WordPress homepage:
+   Montserrat headings, Poppins body, blue #1863dc, lime footer #ddf967. */
+:root {
+  --brand: #1863dc;
+  --brand-dark: #0056a7;
+  --ink: #212121;
+  --body: #4e4b66;
+  --line: #ebebeb;
+  --bg: #ffffff;
+  --bg-soft: #f4f4f4;
+  --lime: #ddf967;
+  --head-font: "Montserrat", Helvetica, Arial, sans-serif;
+  --body-font: "Poppins", Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--body);
+  font: 16px/1.7 var(--body-font);
+}
+img, iframe { max-width: 100%; }
+a { color: var(--brand); }
+a:hover { color: var(--brand-dark); }
+h1, h2, h3, h4 {
+  font-family: var(--head-font);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+/* Header: white bar with the real logo, matching the homepage menu. */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.site-header .brand { display: flex; align-items: center; }
+.site-header .brand img { width: 62px; height: 62px; display: block; }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 22px; }
+.site-header nav a {
+  font-family: var(--head-font);
+  font-weight: 300;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+.site-header nav a:hover { color: var(--brand); }
+
+main { max-width: 1180px; margin: 0 auto; padding: 32px 24px 56px; }
+
+.hero { text-align: center; padding: 48px 0 8px; }
+.hero h1 { font-size: 56px; margin: 0 0 10px; letter-spacing: 1px; }
+.hero p { color: var(--body); margin: 0; font-size: 18px; }
+.page-head { text-align: center; padding: 32px 0 4px; }
+.page-head h1 { font-size: 42px; margin: 0; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+  padding: 36px 0;
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.card:hover { box-shadow: 0 10px 28px rgba(0,0,0,.10); transform: translateY(-3px); }
+.card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+.card-body { padding: 18px 20px 22px; }
+.card h2 { font-size: 19px; margin: 0 0 8px; line-height: 1.35; }
+.card h2 a { color: var(--ink); text-decoration: none; }
+.card h2 a:hover { color: var(--brand); }
+.card p { margin: 0; font-size: 14.5px; }
+.meta { color: #8b8b98; font-size: 13px; font-family: var(--head-font); }
+.meta a { color: var(--brand); text-decoration: none; }
+
+.post { max-width: 780px; margin: 0 auto; }
+.post h1 { font-size: 42px; margin: 0 0 12px; }
+.post .content { font-size: 17.5px; }
+.post .content h2 { font-size: 28px; margin-top: 1.6em; }
+.post .content img { border-radius: 10px; }
+.tags { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); }
+.tags a {
+  display: inline-block;
+  margin: 5px 7px 0 0;
+  padding: 5px 14px;
+  background: var(--bg-soft);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--body);
+  text-decoration: none;
+}
+.tags a:hover { background: var(--brand); color: #fff; }
+
+.pagination { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; justify-content: center; }
+.pagination a {
+  display: block;
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: var(--head-font);
+  font-size: 14px;
+}
+.pagination .active a, .pagination a:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+/* Footer: the homepage's lime band. */
+.site-footer {
+  background: var(--lime);
+  color: var(--ink);
+  padding: 40px 24px;
+  text-align: center;
+  font-family: var(--head-font);
+}
+.site-footer img { width: 78px; height: 78px; margin-bottom: 10px; }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 14px; }
+.site-footer nav a { color: var(--ink); text-decoration: none; font-size: 15px; }
+.site-footer nav a:hover { color: var(--brand-dark); }
+.site-footer p { margin: 0; font-size: 13px; color: #5b6b1f; }
+
+@media (max-width: 640px) {
+  .site-header { padding: 12px 18px; }
+  .site-header nav { gap: 14px; }
+  .site-header nav a { font-size: 15px; }
+  .hero h1 { font-size: 34px; }
+  .post h1, .page-head h1 { font-size: 30px; }
+}

@@ -1,0 +1,41 @@
+page,url,template
+Inicio,/,HomePage
+Servicios,/servicios/,ServicesIndexPage
+Ecosistema,/ecosistema/,EcosystemPage
+Empresas y marcas,/ecosistema/empresas-y-marcas/,EntityIndexPage
+Proyectos propios,/ecosistema/proyectos-propios/,ProjectIndexPage
+Casos y experiencias,/ecosistema/casos-y-experiencias/,CaseIndexPage
+Mapa de conexiones,/ecosistema/mapa-de-conexiones/,ConnectionMapPage
+Medellín Ciudad de Música,/medellin-ciudad-de-musica/,CityVisionPage
+Historia,/historia-lamusica-fm/,HistoryPage
+Nosotros,/quienes-somos/,AboutPage
+Contacto,/contacto/,ContactPage
+Blog,/blog/,BlogIndexPage
+Privacidad,/politica-de-privacidad/,LegalPage
+Diagnóstico y estructuración,/servicios/diagnostico-y-estructuracion/,ServiceFamilyPage
+Diagnóstico de Derechos Patrimoniales,/servicios/diagnostico-y-estructuracion/diagnostico-derechos-patrimoniales/,ServiceDetailPage
+Implementación y Formalización de Derechos Musicales,/servicios/diagnostico-y-estructuracion/formalizacion-derechos-musicales/,ServiceDetailPage
+Aceleración en Derechos Patrimoniales,/servicios/diagnostico-y-estructuracion/aceleracion-derechos-patrimoniales/,ServiceDetailPage
+Administración y recaudo,/servicios/administracion-y-recaudo/,ServiceFamilyPage
+Distribución Digital,/servicios/administracion-y-recaudo/distribucion-digital/,ServiceDetailPage
+Administración Fonográfica ACINPRO,/servicios/administracion-y-recaudo/administracion-fonografica-acinpro/,ServiceDetailPage
+Administración Editorial SAYCO,/servicios/administracion-y-recaudo/administracion-editorial-sayco/,ServiceDetailPage
+Administración Integral de Derechos Patrimoniales,/servicios/administracion-y-recaudo/administracion-integral-derechos/,ServiceDetailPage
+Crecimiento y desarrollo,/servicios/crecimiento-y-desarrollo/,ServiceFamilyPage
+Migración de Distribución Digital,/servicios/crecimiento-y-desarrollo/migracion-distribucion-digital/,ServiceDetailPage
+Estrategia e Identidad Digital,/servicios/crecimiento-y-desarrollo/estrategia-identidad-digital/,ServiceDetailPage
+Estrategia para Lanzamientos,/servicios/crecimiento-y-desarrollo/estrategia-lanzamientos/,ServiceDetailPage
+Modelación de Negocio,/servicios/crecimiento-y-desarrollo/modelacion-de-negocio/,ServiceDetailPage
+Sincronización y uso de música,/servicios/sincronizacion-y-uso-de-musica/,ServiceFamilyPage
+Preparación para Sincronización,/servicios/sincronizacion-y-uso-de-musica/preparacion-para-sincronizacion/,ServiceDetailPage
+Sincronización Agencia de Licenciamiento,/servicios/sincronizacion-y-uso-de-musica/agencia-de-licenciamiento/,ServiceDetailPage
+Supervisión Musical y Licenciamiento por Brief,/servicios/sincronizacion-y-uso-de-musica/supervision-musical-por-brief/,ServiceDetailPage
+Estrategia Musical para Marcas Campañas y Experiencias,/servicios/sincronizacion-y-uso-de-musica/estrategia-musical-para-marcas/,ServiceDetailPage
+Formación y consultoría,/servicios/formacion-y-consultoria/,ServiceFamilyPage
+Formación Especializada,/servicios/formacion-y-consultoria/formacion-especializada/,ServiceDetailPage
+Consultoría Especializada,/servicios/formacion-y-consultoria/consultoria-especializada/,ServiceDetailPage
+Programas de Fortalecimiento para Instituciones y Grupos,/servicios/formacion-y-consultoria/programas-de-fortalecimiento/,ServiceDetailPage
+Ecosistemas y territorio,/servicios/ecosistemas-y-territorio/,ServiceFamilyPage
+Diseño de Mercados y Encuentros B2B,/servicios/ecosistemas-y-territorio/mercados-y-encuentros-b2b/,ServiceDetailPage
+Proyectos de Industria Musical y Ciudad,/servicios/ecosistemas-y-territorio/industria-musical-y-ciudad/,ServiceDetailPage
+Turismo Musical y Diseño de Experiencias,/servicios/ecosistemas-y-territorio/turismo-musical-y-experiencias/,ServiceDetailPage
