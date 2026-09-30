@@ -1,0 +1,52 @@
+# Pages CMS config (https://pagescms.org/docs). The Hugo site lives in hugo-site/.
+media:
+  input: hugo-site/static/uploads
+  output: /uploads
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: hugo-site/content/posts
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, categories]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: date
+        label: Fecha
+        type: date
+        required: true
+      - name: description
+        label: Descripción (SEO, máx. 160 caracteres)
+        type: text
+        options:
+          maxlength: 160
+      - name: categories
+        label: Categorías
+        type: select
+        options:
+          multiple: true
+          creatable: true
+          values: [Artistas, Playlist Artistas, Agenda, Blog, Colombia Country of Music, Industria musical, LaMúsica.fm, Saberes Digitales]
+      - name: tags
+        label: Etiquetas
+        type: string
+        list: true
+      - name: featured_image
+        label: Imagen destacada
+        type: image
+      - name: slug
+        label: URL (opcional, ej. mi-nuevo-post)
+        type: string
+      - name: body
+        label: Contenido
+        type: rich-text

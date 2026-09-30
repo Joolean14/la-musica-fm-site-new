@@ -17,7 +17,7 @@ enableGitInfo = false
   category = "categories"
   tag = "tags"
 
-# Se sirven los uploads originales sin copiar 1.8 GB dentro del sitio.
+# Las imágenes de los posts viven en static/wp-content/uploads.
 [module]
   [[module.mounts]]
     source = "static"
@@ -28,9 +28,6 @@ enableGitInfo = false
   [[module.mounts]]
     source = "assets"
     target = "assets"
-  [[module.mounts]]
-    source = "../wordpress-export/wp-content/uploads"
-    target = "static/wp-content/uploads"
 
 [params]
   description = "LaMúsica.fm conecta música, derechos, proyectos, empresas y ciudad."
